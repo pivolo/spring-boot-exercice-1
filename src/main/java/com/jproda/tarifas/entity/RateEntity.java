@@ -23,7 +23,7 @@ public class RateEntity {
     private Long brandId;
 
     @Column(name = "product_id")
-    private Long producId;
+    private Long productId;
 
     @Column(name = "start_date")
     private Date startDate;

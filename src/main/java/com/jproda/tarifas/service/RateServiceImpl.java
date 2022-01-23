@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class RateServiceImpl implements RateService {
@@ -41,6 +43,11 @@ public class RateServiceImpl implements RateService {
 
     @Override
     public Optional<Rate> findBy(Date date, Long productId, Long brandId) {
-        return Optional.empty();
+        List<RateEntity> entityRates = rateEntityRepository.
+                findByBrandIdAndAndProductIdAndStartDateGreaterThanEqualAndEndDateLessThanEqual
+                        (brandId, productId, date, date);
+        List<Rate> rates = entityRates.stream().map(mapper::entityToApi).collect(Collectors.toList());
+        Optional<Rate> rate = entityRates.isEmpty() ? Optional.empty() : Optional.of(rates.get(0));
+        return rate;
     }
 }

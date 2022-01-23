@@ -7,7 +7,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.testcontainers.containers.PostgreSQLContainer;
 @Sql("/init-db.sql")
 @TestPropertySource(locations = "classpath:application-test.properties")
-public abstract class PostgreSQLTestBase {
+public abstract class IntegrationTestBase {
         private static PostgreSQLContainer database = new PostgreSQLContainer("postgres:11.1");
 
         static {

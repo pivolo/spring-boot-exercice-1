@@ -1,6 +1,6 @@
 package com.jproda.tarifas.persistence;
 
-import com.jproda.tarifas.PostgreSQLTestBase;
+import com.jproda.tarifas.IntegrationTestBase;
 import com.jproda.tarifas.entity.RateEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import static org.springframework.transaction.annotation.Propagation.NOT_SUPPORT
 @DataJpaTest
 @Transactional(propagation = NOT_SUPPORTED)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class RateEntityRepositoryTest extends PostgreSQLTestBase {
+class RateEntityRepositoryTest extends IntegrationTestBase {
     //System under test
     @Autowired
     RateEntityRepository sut;

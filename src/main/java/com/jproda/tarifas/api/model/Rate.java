@@ -13,10 +13,9 @@ import java.util.Date;
 public class Rate {
     private Long id;
     private Long brandId;
-    private Long producId;
+    private Long productId;
     private Date startDate;
     private Date endDate;
     private BigDecimal price;
     private String currencyCode;
-    private String currencyCdd;
 }
