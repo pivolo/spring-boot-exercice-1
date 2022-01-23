@@ -57,11 +57,10 @@ class RateServiceImplTI extends IntegrationTestBase {
         assertTrue(actualAfterDelete.isEmpty());
     }
     @Test
-    @Disabled
     void givenExistingParams_findBy_returnRate() {
         Date date = Date.from(LocalDate.of(2022, 1, 2).
                 atStartOfDay(ZoneId.systemDefault()).toInstant());
-        Optional<Rate> actual = rateService.findBy(date, 2l, 2l);
+        Optional<Rate> actual = rateService.findBy(date, 2l, 1l);
         assertTrue(actual.isPresent());
     }
 }

@@ -44,7 +44,7 @@ public class RateServiceImpl implements RateService {
     @Override
     public Optional<Rate> findBy(Date date, Long productId, Long brandId) {
         List<RateEntity> entityRates = rateEntityRepository.
-                findByBrandIdAndAndProductIdAndStartDateGreaterThanEqualAndEndDateLessThanEqual
+                findByBrandIdAndProductIdAndStartDateLessThanEqualAndEndDateGreaterThanEqual
                         (brandId, productId, date, date);
         List<Rate> rates = entityRates.stream().map(mapper::entityToApi).collect(Collectors.toList());
         Optional<Rate> rate = entityRates.isEmpty() ? Optional.empty() : Optional.of(rates.get(0));

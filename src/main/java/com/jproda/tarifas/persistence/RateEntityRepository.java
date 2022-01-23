@@ -9,6 +9,7 @@ import java.util.List;
 public interface RateEntityRepository extends JpaRepository<RateEntity, Long> {
 
     public List<RateEntity>
-        findByBrandIdAndAndProductIdAndStartDateGreaterThanEqualAndEndDateLessThanEqual(Long brandId, Long productId, Date Date, Date date);
+        findByBrandIdAndProductIdAndStartDateLessThanEqualAndEndDateGreaterThanEqual
+            (Long brandId, Long productId, Date startDate, Date endDate);
 
 }
