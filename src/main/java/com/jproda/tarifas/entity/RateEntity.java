@@ -1,4 +1,4 @@
-package com.jproda.tarifas.model;
+package com.jproda.tarifas.entity;
 
 import lombok.*;
 
@@ -13,7 +13,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "t_rates")
-public class Rate {
+public class RateEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

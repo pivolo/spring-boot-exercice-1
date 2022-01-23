@@ -1,7 +1,7 @@
 package com.jproda.tarifas.persistence;
 
 import com.jproda.tarifas.PostgreSQLTestBase;
-import com.jproda.tarifas.model.Rate;
+import com.jproda.tarifas.entity.RateEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -16,14 +16,14 @@ import static org.springframework.transaction.annotation.Propagation.NOT_SUPPORT
 @DataJpaTest
 @Transactional(propagation = NOT_SUPPORTED)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class RateRepositoryTest extends PostgreSQLTestBase {
+class RateEntityRepositoryTest extends PostgreSQLTestBase {
     //System under test
     @Autowired
-    RateRepository sut;
+    RateEntityRepository sut;
 
     @Test
     public void findAll_test(){
-        List<Rate> allRates = sut.findAll();
+        List<RateEntity> allRates = sut.findAll();
         assertNotNull(allRates);
         assertTrue(!allRates.isEmpty());
     }
