@@ -1,6 +1,6 @@
 package com.jproda.tarifas.service;
 
-import com.jproda.tarifas.api.exception.NotFoundException;
+import com.jproda.tarifas.api.exception.ResourceNotFoundException;
 import com.jproda.tarifas.api.model.Rate;
 import com.jproda.tarifas.entity.RateEntity;
 import com.jproda.tarifas.persistence.RateEntityRepository;
@@ -29,6 +29,23 @@ public class RateServiceImpl implements RateService {
     }
 
     @Override
+    public Optional<Rate> update(Long id, Rate rate) {
+        Optional<RateEntity> entity =rateEntityRepository.findById(id);
+        entity.ifPresent(value -> rateEntityRepository.save(setEntityValues(value, rate)));
+        return entity.map(mapper::entityToApi);
+    }
+
+    private RateEntity setEntityValues(RateEntity entity, Rate rate) {
+        entity.setBrandId(rate.getBrandId());
+        entity.setEndDate(rate.getEndDate());
+        entity.setStartDate(rate.getStartDate());
+        entity.setProductId(rate.getProductId());
+        entity.setPrice(rate.getPrice());
+        entity.setCurrencyCode(rate.getCurrencyCode());
+        return entity;
+    }
+
+    @Override
     public Optional<Rate> findById(Long id) {
         Optional<RateEntity> entity = rateEntityRepository.findById(id);
         return entity.map(mapper::entityToApi);
@@ -38,7 +55,7 @@ public class RateServiceImpl implements RateService {
     public void delete(Long id) {
         Optional<RateEntity> entity = rateEntityRepository.findById(id);
         entity.ifPresentOrElse(rateEntityRepository::delete,
-                () ->new NotFoundException("Rate Id not Found" + id));
+                () ->new ResourceNotFoundException("Rate Id not Found" + id));
     }
 
     @Override

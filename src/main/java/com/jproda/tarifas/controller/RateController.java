@@ -1,0 +1,49 @@
+package com.jproda.tarifas.controller;
+
+import com.jproda.tarifas.api.RateControllerApi;
+import com.jproda.tarifas.api.exception.ResourceNotFoundException;
+import com.jproda.tarifas.api.model.Rate;
+import com.jproda.tarifas.service.RateService;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Scheduler;
+
+@RestController
+@AllArgsConstructor
+@Slf4j
+public class RateController implements RateControllerApi {
+    private final RateService rateService;
+    @Qualifier("jdbcScheduler")
+    private final Scheduler jdbcScheduler;
+
+    @Override
+    public Mono<Rate> findById(long id){
+        return Mono.fromCallable(() -> rateService.findById(id)
+                    .orElseThrow(() -> new ResourceNotFoundException("Rate not found: " + id)))
+                .subscribeOn(jdbcScheduler);
+    }
+
+    @Override
+    public Mono<Rate> create(Rate rate){
+
+        return Mono.fromCallable(() -> rateService.create(rate)).subscribeOn(jdbcScheduler);
+    }
+
+    @Override
+    public Mono<Rate> update(long id, Rate rate){
+
+        return Mono.fromCallable(()-> rateService.update(id, rate)
+                    .orElseThrow(() -> new ResourceNotFoundException("Rate not found: " + id)))
+                .subscribeOn(jdbcScheduler);
+    }
+
+    @Override
+    public Mono<Void> delete(long id){
+        return Mono.fromRunnable(() -> rateService.delete(id)).subscribeOn(jdbcScheduler).then();
+    }
+}

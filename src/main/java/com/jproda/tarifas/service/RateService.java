@@ -18,7 +18,11 @@ import java.util.Optional;
  */
 public interface RateService {
     Rate create(Rate rate);
+
+    Optional<Rate> update(Long id, Rate rate);
+
     Optional<Rate> findById(Long id);
     void delete(Long id);
     Optional<Rate> findBy(Date date, Long productId, Long brandId);
+
 }
