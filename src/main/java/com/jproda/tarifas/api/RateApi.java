@@ -5,11 +5,13 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 @RequestMapping("/api/rate")
 @Tag(name = "RateApi", description = "REST API for Rates information.")
@@ -28,6 +30,10 @@ public interface RateApi {
 
     @GetMapping("{id}")
     Mono<Rate> findById(@PathVariable long id);
+
+    //yyyy-MM-dd
+    @GetMapping("/search")
+    Mono<Rate> findBy(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @RequestParam Date date, @RequestParam long productId, @RequestParam  long brandId);
 
     @PostMapping
     Mono<Rate> create(@RequestBody Rate rate);

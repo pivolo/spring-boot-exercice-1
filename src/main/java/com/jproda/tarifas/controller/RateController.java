@@ -12,6 +12,7 @@ import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Scheduler;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 @RestController
 @AllArgsConstructor
@@ -25,6 +26,13 @@ public class RateController implements RateApi {
     public Mono<Rate> findById(long id){
         return Mono.fromCallable(() -> rateService.findById(id)
                     .orElseThrow(() -> new ResourceNotFoundException("Rate not found: " + id)))
+                .subscribeOn(jdbcScheduler);
+    }
+
+    @Override
+    public Mono<Rate> findBy(Date date, long productId, long brandId){
+        return Mono.fromCallable(() -> rateService.findBy(date, productId, brandId)
+                        .orElseThrow(() -> new ResourceNotFoundException("Rate not found")))
                 .subscribeOn(jdbcScheduler);
     }
 
