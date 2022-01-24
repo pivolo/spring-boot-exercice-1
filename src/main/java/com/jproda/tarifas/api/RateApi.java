@@ -6,15 +6,14 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 import java.math.BigDecimal;
 
 @RequestMapping("/api/rate")
-@Tag(name = "RateControllerApi", description = "REST API for Rates information.")
-public interface RateControllerApi {
+@Tag(name = "RateApi", description = "REST API for Rates information.")
+public interface RateApi {
 
 
     @Operation(

@@ -1,14 +1,12 @@
 package com.jproda.tarifas.controller;
 
-import com.jproda.tarifas.api.RateControllerApi;
+import com.jproda.tarifas.api.RateApi;
 import com.jproda.tarifas.api.exception.ResourceNotFoundException;
 import com.jproda.tarifas.api.model.Rate;
 import com.jproda.tarifas.service.RateService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Scheduler;
@@ -18,7 +16,7 @@ import java.math.BigDecimal;
 @RestController
 @AllArgsConstructor
 @Slf4j
-public class RateController implements RateControllerApi {
+public class RateController implements RateApi {
     private final RateService rateService;
     @Qualifier("jdbcScheduler")
     private final Scheduler jdbcScheduler;
