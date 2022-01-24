@@ -7,6 +7,7 @@ import com.jproda.tarifas.persistence.RateEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -29,19 +30,14 @@ public class RateServiceImpl implements RateService {
     }
 
     @Override
-    public Optional<Rate> update(Long id, Rate rate) {
+    public Optional<Rate> update(Long id, BigDecimal price) {
         Optional<RateEntity> entity =rateEntityRepository.findById(id);
-        entity.ifPresent(value -> rateEntityRepository.save(setEntityValues(value, rate)));
+        entity.ifPresent(value -> rateEntityRepository.save(setEntityValue(value, price)));
         return entity.map(mapper::entityToApi);
     }
 
-    private RateEntity setEntityValues(RateEntity entity, Rate rate) {
-        entity.setBrandId(rate.getBrandId());
-        entity.setEndDate(rate.getEndDate());
-        entity.setStartDate(rate.getStartDate());
-        entity.setProductId(rate.getProductId());
-        entity.setPrice(rate.getPrice());
-        entity.setCurrencyCode(rate.getCurrencyCode());
+    private RateEntity setEntityValue(RateEntity entity, BigDecimal price) {
+        entity.setPrice(price);
         return entity;
     }
 

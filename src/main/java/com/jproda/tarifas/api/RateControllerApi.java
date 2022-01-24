@@ -10,14 +10,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+import java.math.BigDecimal;
+
 @RequestMapping("/api/rate")
 @Tag(name = "RateControllerApi", description = "REST API for Rates information.")
 public interface RateControllerApi {
 
 
     @Operation(
-            summary = "${api.product-composite.get-composite-product.description}",
-            description = "${api.product-composite.get-composite-product.notes}")
+            summary = "${api.rates.findById}",
+            description = "${api.rates.findById.description}")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "${api.responseCodes.ok.description}"),
             @ApiResponse(responseCode = "400", description = "${api.responseCodes.badRequest.description}"),
@@ -32,7 +34,7 @@ public interface RateControllerApi {
     Mono<Rate> create(@RequestBody Rate rate);
 
     @PutMapping("{id}")
-    Mono<Rate> update(@PathVariable long id, @RequestBody Rate rate);
+    Mono<Rate> update(@PathVariable long id, @RequestParam BigDecimal price);
 
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)

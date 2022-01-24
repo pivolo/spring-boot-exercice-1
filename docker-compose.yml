@@ -1,0 +1,25 @@
+version: '2.1'
+
+services:
+#  tarifas:
+#    build: ../spring-boot-exercice-1
+#    mem_limit: 512m
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
+#    depends_on:
+#      postgresql:
+#        condition: service_healthy
+  postgresql:
+    image: 'postgres:11.1'
+    mem_limit: 512m
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: user # The PostgreSQL user (useful to connect to the database)
+      POSTGRES_PASSWORD: pwd # The PostgreSQL password (useful to connect to the database)
+      POSTGRES_DB: exercicedb # The PostgreSQL default database (automatically created at first launch)
+#    healthcheck:
+#      test: [ "CMD-SHELL", "pg_isready" ]
+#      interval: 10s
+#      timeout: 5s
+#      retries: 5

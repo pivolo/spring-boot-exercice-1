@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Scheduler;
 
+import java.math.BigDecimal;
+
 @RestController
 @AllArgsConstructor
 @Slf4j
@@ -35,9 +37,9 @@ public class RateController implements RateControllerApi {
     }
 
     @Override
-    public Mono<Rate> update(long id, Rate rate){
+    public Mono<Rate> update(long id, BigDecimal price){
 
-        return Mono.fromCallable(()-> rateService.update(id, rate)
+        return Mono.fromCallable(()-> rateService.update(id, price)
                     .orElseThrow(() -> new ResourceNotFoundException("Rate not found: " + id)))
                 .subscribeOn(jdbcScheduler);
     }
