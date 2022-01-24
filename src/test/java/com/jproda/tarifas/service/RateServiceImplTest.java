@@ -32,7 +32,7 @@ class RateServiceImplTest {
 
 
     @Test
-    void giverID_findById_returRate() {
+    void givenID_findById_returRate() {
         //Preparacion test:
         RateEntity rateEntity = RateEntity.builder().id(1l).brandId(2l).price(new BigDecimal(1000)).build();
         when(rateEntityRepository.findById(1l)).thenReturn(Optional.of(rateEntity));
