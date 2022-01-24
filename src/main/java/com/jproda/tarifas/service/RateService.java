@@ -2,6 +2,7 @@ package com.jproda.tarifas.service;
 
 import com.jproda.tarifas.api.model.Rate;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +20,7 @@ import java.util.Optional;
 public interface RateService {
     Rate create(Rate rate);
 
-    Optional<Rate> update(Long id, Rate rate);
+    Optional<Rate> update(Long id, BigDecimal price);
 
     Optional<Rate> findById(Long id);
     void delete(Long id);
