@@ -39,7 +39,7 @@ class RateServiceImplTest {
         when(rateMapper.entityToApi(rateEntity)).thenReturn(rate);
 
         //Test:
-        Optional<Rate> actual = sut.findById(1l);
+        Optional<Rate> actual = sut.doFindById(1l);
         assertTrue(actual.isPresent());
         assertEquals(2l, actual.get().getBrandId());
 
@@ -57,7 +57,7 @@ class RateServiceImplTest {
         when(rateMapper.apiToEntity(rate)).thenReturn(rateEntity);
 
         //Test:
-        sut.create(rate);
+        sut.doCreate(rate);
         verify(rateEntityRepository, times(1)).save(rateEntity);
     }
 
