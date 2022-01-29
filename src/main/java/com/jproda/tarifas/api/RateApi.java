@@ -23,24 +23,45 @@ public interface RateApi {
             description = "${api.rates.findById.description}")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "${api.responseCodes.ok.description}"),
-            @ApiResponse(responseCode = "400", description = "${api.responseCodes.badRequest.description}"),
-            @ApiResponse(responseCode = "404", description = "${api.responseCodes.notFound.description}"),
-            @ApiResponse(responseCode = "422", description = "${api.responseCodes.unprocessableEntity.description}")
     })
 
     @GetMapping("{id}")
     Mono<Rate> findById(@PathVariable long id);
 
     //yyyy-MM-dd
+    @Operation(
+            summary = "${api.rates.findById}",
+            description = "${api.rates.findById.description}")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "${api.responseCodes.ok.description}"),
+    })
     @GetMapping("/search")
     Mono<Rate> findBy(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @RequestParam Date date, @RequestParam long productId, @RequestParam  long brandId);
 
+    @Operation(
+            summary = "${api.rates.findById}",
+            description = "${api.rates.findById.description}")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "${api.responseCodes.ok.description}"),
+    })
     @PostMapping
     Mono<Rate> create(@RequestBody Rate rate);
 
+    @Operation(
+            summary = "${api.rates.findById}",
+            description = "${api.rates.findById.description}")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "${api.responseCodes.ok.description}"),
+    })
     @PutMapping("{id}")
     Mono<Rate> update(@PathVariable long id, @RequestParam BigDecimal price);
 
+    @Operation(
+            summary = "${api.rates.findById}",
+            description = "${api.rates.findById.description}")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "${api.responseCodes.ok.description}"),
+    })
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     Mono<Void> delete(@PathVariable long id);

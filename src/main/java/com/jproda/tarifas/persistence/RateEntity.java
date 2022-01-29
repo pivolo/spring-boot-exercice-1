@@ -1,4 +1,4 @@
-package com.jproda.tarifas.entity;
+package com.jproda.tarifas.persistence;
 
 import lombok.*;
 

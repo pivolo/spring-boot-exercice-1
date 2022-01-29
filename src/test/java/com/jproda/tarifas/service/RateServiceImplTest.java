@@ -1,16 +1,13 @@
 package com.jproda.tarifas.service;
 
 import com.jproda.tarifas.api.model.Rate;
-import com.jproda.tarifas.entity.RateEntity;
+import com.jproda.tarifas.persistence.RateEntity;
 import com.jproda.tarifas.persistence.RateEntityRepository;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 
 import java.math.BigDecimal;
 import java.util.Optional;
@@ -42,7 +39,7 @@ class RateServiceImplTest {
         when(rateMapper.entityToApi(rateEntity)).thenReturn(rate);
 
         //Test:
-        Optional<Rate> actual = sut.findById(1l);
+        Optional<Rate> actual = sut.doFindById(1l);
         assertTrue(actual.isPresent());
         assertEquals(2l, actual.get().getBrandId());
 
@@ -60,7 +57,7 @@ class RateServiceImplTest {
         when(rateMapper.apiToEntity(rate)).thenReturn(rateEntity);
 
         //Test:
-        sut.create(rate);
+        sut.doCreate(rate);
         verify(rateEntityRepository, times(1)).save(rateEntity);
     }
 

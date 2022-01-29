@@ -1,12 +1,10 @@
 package com.jproda.tarifas;
 
-import com.jproda.tarifas.api.RateApi;
 import com.jproda.tarifas.api.model.Rate;
-import com.jproda.tarifas.controller.RateController;
+import com.jproda.tarifas.service.RateServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
@@ -30,7 +28,7 @@ class SpringBootExercice1ApplicationTests extends IntegrationTestBase {
     private WebTestClient client;
 
     @MockBean
-    private RateController rateApi;
+    private RateServiceImpl rateApi;
 
     @BeforeEach
     void setUp() {

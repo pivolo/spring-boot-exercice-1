@@ -24,43 +24,43 @@ import static org.junit.jupiter.api.Assertions.*;
 class RateServiceImplTI extends IntegrationTestBase {
 
     @Autowired
-    RateService rateService;
+    RateServiceImpl rateService;
 
     @Test
     void create() {
         Rate rate = Rate.builder().currencyCode("EUR").brandId(1l).price(BigDecimal.ONE)
                 .startDate(new Date()).endDate(new Date()).build();
-        Rate actual = rateService.create(rate);
+        Rate actual = rateService.doCreate(rate);
         assertNotNull(actual);
         assertNotNull(actual.getId());
     }
 
     @Test
     void givingExistingRate_findById_returnRate() {
-        Optional<Rate> actual = rateService.findById(1l);
+        Optional<Rate> actual = rateService.doFindById(1l);
         assertTrue(actual.isPresent());
         assertNotNull(actual.get().getId());
     }
 
     @Test
     void givingNotExistingRate_findById_returnEmpty() {
-        Optional<Rate> actual = rateService.findById(1000l);
+        Optional<Rate> actual = rateService.doFindById(1000l);
         assertTrue(actual.isEmpty());
     }
 
     @Test
     void givenExistingRate_delete_notFountAfter() {
-        Optional<Rate> actualBeforeDelete = rateService.findById(3l);
+        Optional<Rate> actualBeforeDelete = rateService.doFindById(3l);
         assertTrue(actualBeforeDelete.isPresent());
-        rateService.delete(3l);
-        Optional<Rate> actualAfterDelete = rateService.findById(3l);
+        rateService.doDelete(3l);
+        Optional<Rate> actualAfterDelete = rateService.doFindById(3l);
         assertTrue(actualAfterDelete.isEmpty());
     }
     @Test
     void givenExistingParams_findBy_returnRate() {
         Date date = Date.from(LocalDate.of(2022, 1, 2).
                 atStartOfDay(ZoneId.systemDefault()).toInstant());
-        Optional<Rate> actual = rateService.findBy(date, 2l, 1l);
+        Optional<Rate> actual = rateService.doFindBy(date, 2l, 1l);
         assertTrue(actual.isPresent());
     }
 }
