@@ -1,16 +1,13 @@
 package com.jproda.tarifas.service;
 
 import com.jproda.tarifas.api.model.Rate;
-import com.jproda.tarifas.entity.RateEntity;
+import com.jproda.tarifas.persistence.RateEntity;
 import com.jproda.tarifas.persistence.RateEntityRepository;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 
 import java.math.BigDecimal;
 import java.util.Optional;

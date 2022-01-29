@@ -2,7 +2,7 @@ package com.jproda.tarifas.service;
 
 import com.jproda.tarifas.api.exception.ResourceNotFoundException;
 import com.jproda.tarifas.api.model.Rate;
-import com.jproda.tarifas.entity.RateEntity;
+import com.jproda.tarifas.persistence.RateEntity;
 import com.jproda.tarifas.persistence.RateEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
