@@ -34,6 +34,7 @@ public class RateServiceImpl implements RateApi {
     public Mono<Rate> findById(long id){
         return Mono.fromCallable(() -> doFindById(id)
                         .orElseThrow(() -> new ResourceNotFoundException("Rate not found: " + id)))
+                .switchIfEmpty(Mono.error(new ResourceNotFoundException("Rate not found")))
                 .subscribeOn(jdbcScheduler);
     }
 
@@ -41,6 +42,7 @@ public class RateServiceImpl implements RateApi {
     public Mono<Rate> findBy(Date date, long productId, long brandId){
         return Mono.fromCallable(() -> doFindBy(date, productId, brandId)
                         .orElseThrow(() -> new ResourceNotFoundException("Rate not found")))
+                .switchIfEmpty(Mono.error(new ResourceNotFoundException("Rate not found")))
                 .subscribeOn(jdbcScheduler);
     }
 

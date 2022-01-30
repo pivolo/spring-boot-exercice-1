@@ -10,11 +10,11 @@ import reactor.core.scheduler.Scheduler;
 import reactor.core.scheduler.Schedulers;
 
 @SpringBootApplication
-public class SpringBootExercice1Application {
-    private static final Logger LOG = LoggerFactory.getLogger(SpringBootExercice1Application.class);
+public class TarifasApplication {
+    private static final Logger LOG = LoggerFactory.getLogger(TarifasApplication.class);
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootExercice1Application.class, args);
+        SpringApplication.run(TarifasApplication.class, args);
     }
 
 
