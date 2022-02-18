@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.jproda.tarifas</groupId>
     <artifactId>spring-boot-exercice-1</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>spring-boot-exercice-1</name>
     <description>spring-boot-exercice-1</description>
 
