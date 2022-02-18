@@ -31,12 +31,17 @@
                     <noFeatureBuild>true</noFeatureBuild>
                     <noHotfixBuild>true</noHotfixBuild>
                     <enableFeatureVersions>true</enableFeatureVersions>
-                    <releaseBranchVersionSuffix>RC</releaseBranchVersionSuffix>
                     <allowSnapshots>true</allowSnapshots>
                     <pushReleases>false</pushReleases>
                     <pushHotfixes>false</pushHotfixes>
                     <pushFeatures>false</pushFeatures>
                     <flowInitContext>
+                        <masterBranchName>master</masterBranchName>
+                        <developBranchName>development</developBranchName>
+                        <featureBranchPrefix>feature-</featureBranchPrefix>
+                        <releaseBranchPrefix>release-</releaseBranchPrefix>
+                        <hotfixBranchPrefix>hotfix-</hotfixBranchPrefix>
+
                         <versionTagPrefix>v</versionTagPrefix>
                     </flowInitContext>
                 </configuration>
