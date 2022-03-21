@@ -1,18 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.jproda.tarifas</groupId>
     <artifactId>spring-boot-exercice-1</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>spring-boot-exercice-1</name>
     <description>spring-boot-exercice-1</description>
-    
+
     <packaging>pom</packaging>
 
     <modules>
         <module>tarifas</module>
     </modules>
+    <properties>
+        <jgitflow-maven-plugin.version>1.0-m5.1</jgitflow-maven-plugin.version>
+    </properties>
+
+    <build>
+        <!-- To use the plugin goals in your POM or parent POM -->
+        <plugins>
+            <plugin>
+                <groupId>external.atlassian.jgitflow</groupId>
+                <artifactId>jgitflow-maven-plugin</artifactId>
+                <version>${jgitflow-maven-plugin.version}</version>
+                <configuration>
+                    <enableSshAgent>false</enableSshAgent>
+                    <noDeploy>true</noDeploy>
+                    <noReleaseBuild>true</noReleaseBuild>
+                    <noFeatureBuild>true</noFeatureBuild>
+                    <noHotfixBuild>true</noHotfixBuild>
+                    <enableFeatureVersions>true</enableFeatureVersions>
+                    <allowSnapshots>true</allowSnapshots>
+                    <pushReleases>false</pushReleases>
+                    <pushHotfixes>false</pushHotfixes>
+                    <pushFeatures>false</pushFeatures>
+                    <flowInitContext>
+                        <masterBranchName>master</masterBranchName>
+                        <developBranchName>development</developBranchName>
+                        <featureBranchPrefix>feature-</featureBranchPrefix>
+                        <releaseBranchPrefix>release-</releaseBranchPrefix>
+                        <hotfixBranchPrefix>hotfix-</hotfixBranchPrefix>
+
+                        <versionTagPrefix>v</versionTagPrefix>
+                    </flowInitContext>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
 
 </project>
 
